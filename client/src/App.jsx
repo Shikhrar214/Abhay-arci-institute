@@ -35,7 +35,7 @@ function App() {
           element: <Courses/>
         },
         {
-          path: "login",
+          path: "register",
           element: <LoginLogout/>
         }
 

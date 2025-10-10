@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router";
 import { Menu, X } from "lucide-react"; 
+import { logo } from "../assets/images";
+
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigation = ["home", "about", "contact", "courses", "gallery", "login"];
+  const navigation = ["home", "about", "contact", "courses", "gallary", "register"];
 
   return (
     <header className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
       <div className="flex justify-between items-center px-6 py-4 md:px-10">
         {/* Logo */}
-        <div className="font-bold text-2xl text-blue-600 tracking-wide">
-          Logo
+        <div className="w-11">
+          <img src={logo} alt="Logo" />
         </div>
 
         {/* Desktop Navigation */}

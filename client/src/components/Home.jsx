@@ -138,7 +138,7 @@ function Home() {
 
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-8">
       {/* Header Section */}
       <section className="relative flex flex-col md:flex-row items-center justify-center gap-8 py-16 px-6 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-b-3xl shadow-lg overflow-hidden">
         <motion.img
@@ -147,7 +147,7 @@ function Home() {
           transition={{ duration: 1 }}
           src={Logo}
           alt="ARCI Logo"
-          className="h-44 w-44 hidden md:block drop-shadow-lg"
+          className="h-44 w-44 hidden md:block drop-shadow-lg rounded-full"
         />
 
         <motion.div

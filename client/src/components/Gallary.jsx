@@ -1,11 +1,11 @@
 import React from 'react'
 
-function gallary() {
+function Gallary() {
   return (
     <div>
-      
+      gallary
     </div>
   )
 }
 
-export default gallary
+export default Gallary
