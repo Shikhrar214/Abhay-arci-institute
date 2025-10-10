@@ -7,7 +7,7 @@ import { logo } from "../assets/images";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigation = ["home", "about", "contact", "courses", "gallary", "register"];
+  const navigation = ["home", "about", "contact", "courses", "gallery", "register"];
 
   return (
     <header className="w-full bg-white shadow-md fixed top-0 left-0 z-50">

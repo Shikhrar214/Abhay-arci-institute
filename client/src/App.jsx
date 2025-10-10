@@ -27,7 +27,7 @@ function App() {
           element: <Contact />
         },
         {
-          path: "gallary",
+          path: "gallery",
           element: <Gallary/>
         },
         {
