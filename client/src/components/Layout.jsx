@@ -6,7 +6,7 @@ import { Outlet } from 'react-router'
 function Layout() {
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
       <Footer />
     </div>

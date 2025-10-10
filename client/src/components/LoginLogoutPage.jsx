@@ -1,5 +1,7 @@
 import React from 'react'
-import {Login, Logout} from "../student/student.index.js"
+import {Login, Logout, PersonalDetails} from "../student/student.index.js"
+
+
 
 export default function LoginLogoutPage() {
   return (
@@ -7,6 +9,8 @@ export default function LoginLogoutPage() {
       LoginLogoutPage
       <Login/>
       <Logout/>
+      <PersonalDetails/>
     </div>
   )
 }
+

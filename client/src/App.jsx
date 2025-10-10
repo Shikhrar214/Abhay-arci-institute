@@ -1,7 +1,7 @@
 import React  from "react"
 import { createBrowserRouter , RouterProvider} from "react-router";
 import { About, Contact, Courses, Gallary, Home,LoginLogout, Layout } from "./components/index.js"
-import { Login } from "./student/student.index.js";
+import { AdditionalDetails, Login } from "./student/student.index.js";
 
 function App() {
   
@@ -37,6 +37,10 @@ function App() {
         {
           path: "register",
           element: <LoginLogout/>
+        },
+        {
+          path: "payments",
+          element: <AdditionalDetails/>
         }
 
       ]
