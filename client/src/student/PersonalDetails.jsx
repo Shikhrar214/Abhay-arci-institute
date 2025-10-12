@@ -33,7 +33,7 @@ const PersonalDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-10 px-6 md:px-20">
+    <div className="mt-16 min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-10 px-6 md:px-20">
       <motion.h1
         className="text-4xl md:text-5xl font-extrabold text-center mb-10 text-orange-400"
         initial={{ opacity: 0, y: -40 }}

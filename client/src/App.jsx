@@ -1,7 +1,7 @@
 import React  from "react"
 import { createBrowserRouter , RouterProvider} from "react-router";
 import { About, Contact, Courses, Gallary, Home,LoginLogout, Layout } from "./components/index.js"
-import { AdditionalDetails, Login } from "./student/student.index.js";
+import { AdditionalDetails, Assignment, Dashboard, Login, Payments, Profile } from "./student/student.index.js";
 
 function App() {
   
@@ -41,12 +41,30 @@ function App() {
         {
           path: "payments",
           element: <AdditionalDetails/>
+        },
+        {
+          path: "login",
+          element: <Login/> 
         }
 
       ]
     },
-   
-    
+   {
+    path: "student",
+    element: <Dashboard/>
+   },
+  {
+    path: "student-profile",
+    element: <Profile/>
+  },
+  {
+    path: "assignments",
+    element: <Assignment/>
+  },
+  {
+    path: "payment",
+    element: <Payments/>
+  }
   ])
   return (
    <>

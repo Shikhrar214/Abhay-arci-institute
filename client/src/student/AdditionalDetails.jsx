@@ -144,11 +144,11 @@ function AdditionalDetails() {
           </div>
           <div className="flex justify-between">
             <span>Price:</span>
-            <span>₹5,999</span>
+            <span>₹199</span>
           </div>
           <div className="flex justify-between font-bold text-lg text-orange-400 border-t border-gray-700 pt-2">
             <span>Total:</span>
-            <span>₹5,999</span>
+            <span>₹199</span>
           </div>
         </div>
       </motion.div>
