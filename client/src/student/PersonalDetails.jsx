@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link } from "react-router"
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
@@ -113,6 +114,11 @@ const PersonalDetails = () => {
         >
           Submit Details
         </motion.button>
+
+        <Link 
+        className="ml-8 border border-orange-900 rounded-full md:w-full sm:w-full p-3 bg-amber-300"
+        to={"/login"}
+        >Student? Login</Link>
       </motion.form>
     </div>
   );
