@@ -44,7 +44,7 @@ export default function Contact() {
               href="mailto:mailyourquery@example.com" //change mail 
               className="text-orange-400 hover:text-orange-500"
             >
-              Mail your Query
+              mailyourquery@example.com
             </a>
           </li>
         </ul>
@@ -91,7 +91,7 @@ export default function Contact() {
             Message
           </label>
           <textarea
-            rows="4"
+            rows="3"
             placeholder="Write your message..."
             className="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 outline-none transition resize-none"
           ></textarea>

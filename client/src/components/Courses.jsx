@@ -5,6 +5,7 @@ function Courses() {
 
   const courses = [
     {
+      id: 101,
       title: "Full Stack Web Development",
       image: "/images/fullstack.jpg",
       description: "Learn MERN stack with real-world projects and get job ready.",
@@ -12,6 +13,7 @@ function Courses() {
       level: "Intermediate",
     },
     {
+      id: 102,
       title: "Basic Computer Course",
       image: "/images/basic.jpg",
       description: "Learn the fundamentals of computers and MS Office tools.",
@@ -19,6 +21,31 @@ function Courses() {
       level: "Beginner",
     },
     {
+      id: 103,
+      title: "Python Programming",
+      image: "/images/python.jpg",
+      description: "Master Python and build a strong foundation in logic and coding.",
+      duration: "2.5 Months",
+      level: "Intermediate",
+    },
+    {
+      id: 104,
+      title: "Full Stack Web Development",
+      image: "/images/fullstack.jpg",
+      description: "Learn MERN stack with real-world projects and get job ready.",
+      duration: "3 Months",
+      level: "Intermediate",
+    },
+    {
+      id: 105,
+      title: "Basic Computer Course",
+      image: "/images/basic.jpg",
+      description: "Learn the fundamentals of computers and MS Office tools.",
+      duration: "2 Months",
+      level: "Beginner",
+    },
+    {
+      id: 106,
       title: "Python Programming",
       image: "/images/python.jpg",
       description: "Master Python and build a strong foundation in logic and coding.",
@@ -27,6 +54,17 @@ function Courses() {
     },
   ];
 
+
+  const openPDFById = (pdf_id) => {
+    if(!pdf_id) return("pdf not found");
+    try {
+      if (pdf_id) {
+        alert("fetching pdf")
+      }
+    } catch (error) {
+      alert("pdf not found")
+    }
+  }
   
   return (
     <div className='mt-16'>
@@ -52,7 +90,9 @@ function Courses() {
         <span>🕒 {course.duration}</span>
         <span>🎯 {course.level}</span>
       </div>
-      <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
+      <button 
+      onClick={()=>{openPDFById(course.id)}}
+      className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
         View Details
       </button>
     </motion.div>
@@ -65,27 +105,3 @@ function Courses() {
 }
 
 export default Courses
-// 
-
-
-
-{/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-12 px-4">
-  {courses.map((course, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.03 }}
-      className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
-    >
-      <img src={course.image} alt={course.title} className="rounded-xl mb-4 w-full h-48 object-cover"/>
-      <h3 className="text-xl font-bold text-orange-600 mb-2">{course.title}</h3>
-      <p className="text-gray-600 text-sm mb-3">{course.description}</p>
-      <div className="flex justify-between items-center text-gray-500 text-sm mb-4">
-        <span>🕒 {course.duration}</span>
-        <span>🎯 {course.level}</span>
-      </div>
-      <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
-        View Details
-      </button>
-    </motion.div>
-  ))}
-</div> */}

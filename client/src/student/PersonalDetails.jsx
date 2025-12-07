@@ -7,6 +7,7 @@ const PersonalDetails = () => {
   const navigate = useNavigate();
 
   const [studentPhoto, setStudentPhoto] = useState(null);
+  const [registrationData, setRegistrationData ] = useState(null);
 
   // Handle photo upload and size validation
   const handleFileChange = (e) => {
@@ -28,7 +29,8 @@ const PersonalDetails = () => {
     e.preventDefault(); // Prevent page reload
     console.log("Form submitted");
     alert("Form submitted successfully!");
-
+    console.log(registrationData);
+    
     // Navigate to home
     navigate("/payments");
   };
@@ -57,20 +59,36 @@ const PersonalDetails = () => {
             1️⃣ Identification
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <input type="text" placeholder="Full Name" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="date" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Full Name" 
+            
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="date" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
             <select className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none">
               <option value="">Gender</option>
               <option>Male</option>
               <option>Female</option>
               <option>Other</option>
             </select>
-            <input type="text" placeholder="Nationality" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Government ID (Aadhaar / Passport)" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
+            <input 
+            type="text" 
+            placeholder="Nationality" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Government ID (Aadhaar / Passport)" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
 
             <div className="md:col-span-2">
               <label className="block mb-2 text-gray-300">Upload Passport Photo (50-100KB)</label>
-              <input type="file" accept="image/*" onChange={handleFileChange} className="w-full p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+              <input 
+              type="file" 
+              accept="image/*" 
+              onChange={handleFileChange} 
+              className="w-full p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
               {studentPhoto && <p className="mt-2 text-green-400 text-sm">Selected File: {studentPhoto.name}</p>}
             </div>
           </div>
@@ -82,12 +100,27 @@ const PersonalDetails = () => {
             2️⃣ Contact Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <input type="text" placeholder="Residential Address" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
-            <input type="tel" placeholder="Phone Number" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="email" placeholder="Email Address" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Emergency Contact Name" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="tel" placeholder="Emergency Contact Number" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Relationship to Emergency Contact" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Residential Address" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
+            <input 
+            type="tel" 
+            placeholder="Phone Number" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="email" 
+            placeholder="Email Address" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Emergency Contact Name" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="tel" 
+            placeholder="Emergency Contact Number" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            
           </div>
         </section>
 
@@ -97,12 +130,26 @@ const PersonalDetails = () => {
             3️⃣ Parent / Guardian Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <input type="text" placeholder="Full Name" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Relationship to Student" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="tel" placeholder="Phone Number" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="email" placeholder="Email Address" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Occupation" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
-            <input type="text" placeholder="Address (if different from student)" className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
+            <input 
+            type="text" 
+            placeholder="Full Name" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Relationship to Student" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="tel" 
+            placeholder="Phone Number" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="email" 
+            placeholder="Email Address" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none" />
+            <input 
+            type="text" 
+            placeholder="Address (if different from student)" 
+            className="p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none md:col-span-2" />
           </div>
         </section>
 
@@ -116,7 +163,7 @@ const PersonalDetails = () => {
         </motion.button>
 
         <Link 
-        className="ml-8 border border-orange-900 rounded-full md:w-full sm:w-full p-3 bg-amber-300"
+        className="ml-8 border text-blue-900 border-orange-900 rounded-full md:w-full sm:w-full p-3 bg-amber-300"
         to={"/login"}
         >Student? Login</Link>
       </motion.form>
