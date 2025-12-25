@@ -1,6 +1,5 @@
-import React from 'react'
 import { motion } from "framer-motion";
-
+import toast, { Toaster } from 'react-hot-toast';
 function Courses() {
 
   const courses = [
@@ -55,11 +54,15 @@ function Courses() {
   ];
 
 
+  const message = "i am here to show you what is going to done here i am here to show you what is going to done herei am here to show you what is going to done herei am here to show you what is going to done here"
+  const notify = () => toast.success(message);
+ 
+
   const openPDFById = (pdf_id) => {
     if(!pdf_id) return("pdf not found");
     try {
       if (pdf_id) {
-        alert("fetching pdf")
+        notify();
       }
     } catch (error) {
       alert("pdf not found")
@@ -99,7 +102,11 @@ function Courses() {
   ))}
 </div>
 
-
+     <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+     
     </div>
   )
 }

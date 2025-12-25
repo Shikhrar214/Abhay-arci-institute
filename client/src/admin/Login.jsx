@@ -67,13 +67,7 @@ const Login = () => {
         {/* Divider */}
         <div className="my-6 border-t border-gray-700"></div>
       
-        {/* Signup Link */}
-        <p className="text-center text-gray-400 text-sm">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-orange-400 hover:underline">
-            Register Now
-          </Link>
-        </p>
+        
       </motion.div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {Link } from "react-router"
-import { useNavigate } from "react-router";
+import {Link,useNavigate } from "react-router"
+import toast,{Toaster} from "react-hot-toast";
 import { motion } from "framer-motion";
 
 const PersonalDetails = () => {
@@ -24,16 +24,20 @@ const PersonalDetails = () => {
     setStudentPhoto(file);
   };
 
+
+  // notification
+  const notifySuccess = () => toast.success("message") 
   // Form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent page reload
     console.log("Form submitted");
-    alert("Form submitted successfully!");
+    // alert("Form submitted successfully!");
     console.log(registrationData);
-    
+    notifySuccess();
     // Navigate to home
     navigate("/payments");
   };
+
 
   return (
     <div className="mt-16 min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-10 px-6 md:px-20">
@@ -167,6 +171,8 @@ const PersonalDetails = () => {
         to={"/login"}
         >Student? Login</Link>
       </motion.form>
+
+      <Toaster/>
     </div>
   );
 };

@@ -1,8 +1,30 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {Link} from "react-router"
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
+
+  const footerNav = ["Home", "About", "Courses", "Gallery", "Contact"]
+
+  const socialMedia = [
+    {
+      icon: FaFacebookF,
+      link: "http://www.facebook.com"
+    },
+    {
+      icon: FaTwitter,
+      link: "http://www.x.com"
+    }, 
+    {
+      icon: FaInstagram,
+      link: "http://www.instagram.com"
+    }, 
+    {
+      icon: FaLinkedinIn,
+      link: "http://www.linkedin.com"
+    }
+  ]
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -18,13 +40,17 @@ const Footer = () => {
         <div>
           <h2 className="font-semibold text-lg text-white mb-3">Quick Links</h2>
           <ul className="space-y-2">
-            {["Home", "About", "Courses", "Gallery", "Contact"].map((link, index) => (
+            {footerNav.map((link, index) => (
               <motion.li
                 key={index}
                 whileHover={{ x: 5, color: "#f97316" }}
                 className="cursor-pointer transition-colors duration-300"
               >
-                {link}
+                <Link
+                to={link}
+                >
+                  {link}
+                </Link>
               </motion.li>
             ))}
           </ul>
@@ -41,18 +67,27 @@ const Footer = () => {
           </ul>
         </div>
 
+            <div>
+              <h1 className="font-semibold text-lg text-white mb-3">importent links</h1>
+             <div className="flex gap-4">
+               <Link to={"/staff-login"}>Admin</Link>
+              <Link to={"/admin-login"}>Faculity</Link>
+             </div>
+            </div>
+
         {/* Social Media */}
         <div>
           <h2 className="font-semibold text-lg text-white mb-3">Follow Us</h2>
           <div className="flex gap-4">
-            {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
+            {socialMedia.map((Icon, index) => (
               <motion.a
+                target="Blank"
                 key={index}
-                href="#"
+                href={Icon.link}
                 whileHover={{ scale: 1.2, color: "#f97316" }}
                 className="text-gray-400 text-xl"
               >
-                <Icon />
+                <Icon.icon />
               </motion.a>
             ))}
           </div>

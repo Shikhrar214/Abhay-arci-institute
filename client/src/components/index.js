@@ -7,3 +7,7 @@ export {default as Header} from "./Header"
 export {default as Layout} from "./Layout"
 export {default as Gallary} from "./Gallary"
 export {default as LoginLogout} from "./LoginLogoutPage"
+
+
+// notification
+export {default as Notification} from "./Notification"

@@ -6,6 +6,7 @@ import StaffLogin from "./employee/StaffLogin.jsx";
 import StaffDasgboard from "./employee/StaffDashboard.jsx";
 import UploadMedia from "./employee/UploadMedia.jsx";
 import PersonalDetail from "./employee/PersonalDetail.jsx";
+import { AdminDashboard, AdminLogin } from "./admin/index.js";
 
 function App() {
   
@@ -85,8 +86,24 @@ function App() {
   {
     path: "staff-detail",
     element: <PersonalDetail/>
+  },
+  
+
+  // Admin
+
+  {
+    path: "secure-admin-dashboard",
+    element: <AdminDashboard/>,
+    children: [
+    ]
+  },
+  {
+    path: "admin-login",
+    element: <AdminLogin/>
   }
-  ])
+ ],
+ 
+)
   return (
    <>
   <RouterProvider router={router}/>
