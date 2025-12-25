@@ -1,11 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 const Login = () => {
 
+  const navigate = useNavigate();
   const adminLogin = () => {
+
     alert("papa")
+    navigate("/secure-admin-dashboard")
   }
 
   return (

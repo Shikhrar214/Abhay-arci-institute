@@ -1,11 +1,13 @@
 import React from 'react'
 import { motion } from "framer-motion";
-
+import {useNavigate} from "react-router"
 function StaffLogin() {
 
+  const navigate  = useNavigate();
 
   const staffLogin = () => {
-    
+   
+    navigate("/staff-dash")
   }
   return (
     <div className='bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 h-screen w-full text-white flex items-center justify-center'>

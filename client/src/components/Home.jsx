@@ -238,7 +238,7 @@ function Home() {
                 <img
                   src={studentsReviews[index].image}
                   alt={studentsReviews[index].name}
-                  className="h-28 w-28 rounded-full object-cover shadow-md"
+                  className="h-36 w-36 rounded-4xl object-cover shadow-md"
                 />
                 <h3 className="mt-4 font-bold text-lg text-orange-600">
                   {studentsReviews[index].name}
