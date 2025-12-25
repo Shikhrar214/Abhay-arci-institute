@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {Link} from "react-router"
+import {Link, NavLink} from "react-router"
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
@@ -27,7 +27,7 @@ const Footer = () => {
   ]
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 ">
         {/* Logo & Brand */}
         <div className="space-y-4">
           <h1 className="text-2xl font-bold text-orange-400">Aditya Rise</h1>
@@ -83,15 +83,27 @@ const Footer = () => {
             ))}
           </div>
         </div>
+        {/* importent link */}
+        <div>
+              <h1 className="font-semibold text-lg text-white mb-3">Importent Links</h1>
+              <ul>
+                <motion.li
+                
+                whileHover={{ x: 5, color: "#f97316" }}
+                className="cursor-pointer transition-colors duration-300"
+                >
+                   <NavLink className="" to={"/staff-login"}>Faculity</NavLink>
+                </motion.li>
+                <motion.li
+                
+                whileHover={{ x: 5, color: "#f97316" }}
+                className="cursor-pointer transition-colors duration-300"
+                >
+                  <NavLink className="" to={"/admin-login"}>Admin</NavLink>
+                </motion.li>
+              </ul>
+        </div>
       </div>
-
-            <div>
-              <h1 className="font-semibold text-lg text-white mb-3">importent links</h1>
-             <div className="flex gap-4">
-               <Link to={"/staff-login"}>Faculity</Link>
-              <Link to={"/admin-login"}>Admin</Link>
-             </div>
-            </div>
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Aditya Rise Computer Institute. All rights reserved.
       </div>
