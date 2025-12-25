@@ -66,15 +66,6 @@ const Footer = () => {
             <li>Email: info@adityarise.com</li>
           </ul>
         </div>
-
-            <div>
-              <h1 className="font-semibold text-lg text-white mb-3">importent links</h1>
-             <div className="flex gap-4">
-               <Link to={"/staff-login"}>Admin</Link>
-              <Link to={"/admin-login"}>Faculity</Link>
-             </div>
-            </div>
-
         {/* Social Media */}
         <div>
           <h2 className="font-semibold text-lg text-white mb-3">Follow Us</h2>
@@ -94,6 +85,13 @@ const Footer = () => {
         </div>
       </div>
 
+            <div>
+              <h1 className="font-semibold text-lg text-white mb-3">importent links</h1>
+             <div className="flex gap-4">
+               <Link to={"/staff-login"}>Faculity</Link>
+              <Link to={"/admin-login"}>Admin</Link>
+             </div>
+            </div>
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} Aditya Rise Computer Institute. All rights reserved.
       </div>
