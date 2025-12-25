@@ -27,7 +27,7 @@ const Footer = () => {
   ]
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 ">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 text-center md:text-left">
         {/* Logo & Brand */}
         <div className="space-y-4">
           <h1 className="text-2xl font-bold text-orange-400">Aditya Rise</h1>
@@ -39,7 +39,7 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h2 className="font-semibold text-lg text-white mb-3">Quick Links</h2>
-          <ul className="space-y-2">
+          <ul className="space-y-2 flex flex-col items-center md:items-start">
             {footerNav.map((link, index) => (
               <motion.li
                 key={index}
@@ -59,7 +59,7 @@ const Footer = () => {
         {/* Contact Info */}
         <div>
           <h2 className="font-semibold text-lg text-white mb-3">Contact</h2>
-          <ul className="space-y-2 text-gray-400 text-sm">
+          <ul className="space-y-2 text-gray-400 text-sm flex flex-col items-center md:items-start">
             <li>Babhnan, Basti, UP</li>
             <li>PIN CODE: 272163</li>
             <li>Phone: 8467957047</li>
@@ -67,9 +67,9 @@ const Footer = () => {
           </ul>
         </div>
         {/* Social Media */}
-        <div>
+        <div className="gap-4 justify-center md:justify-start">
           <h2 className="font-semibold text-lg text-white mb-3">Follow Us</h2>
-          <div className="flex gap-4">
+          <div className=" justify-center flex lg:block ">
             {socialMedia.map((Icon, index) => (
               <motion.a
                 target="Blank"
@@ -78,15 +78,17 @@ const Footer = () => {
                 whileHover={{ scale: 1.2, color: "#f97316" }}
                 className="text-gray-400 text-xl"
               >
-                <Icon.icon />
+                <Icon.icon
+                className="py-1.5 h-7"
+                />
               </motion.a>
             ))}
           </div>
         </div>
         {/* importent link */}
-        <div>
+        <div className="text-gray-400 text-sm">
               <h1 className="font-semibold text-lg text-white mb-3">Importent Links</h1>
-              <ul>
+              <ul className="space-y-2 flex flex-col items-center md:items-start">
                 <motion.li
                 
                 whileHover={{ x: 5, color: "#f97316" }}
