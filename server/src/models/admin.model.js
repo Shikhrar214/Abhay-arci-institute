@@ -3,18 +3,20 @@ import mongoose,{Schema} from "mongoose";
 const adminSchema = new Schema({
     adminName: {
         type: String,
-        required: true,
+        required: [true,"Admin name is required"],
+        min: 3,
+        max: 20,
     },
-    userName: {
+    role: {
         type: String,
-        required: true,
-        min: 5,
-        max: 15,
-        index: true,
+        enum: {
+            values: ["Admin"],
+            message: "Role is required",
+        }
     },
     email: {
         type: String,
-        required: true,
+        required: [true, "Email is required"],
         lowercase: true,
         trim: true,
         unique: true,
@@ -22,20 +24,32 @@ const adminSchema = new Schema({
     },
     userId: {
         type: String,
-        required: true,
+        required: [true, "UserID is required"],
         min: 5,
         max: 15,
-        index: true,
     },
     password: {
         type: String,
-        required: true,
-        min: 5,
+        required: [true, "Password is Required"],
+        min: [5, "Password must be strong"],
         max: 30,
     },
     refreshToken: {
         type: String,
     },
 },{timestamps: true})
+
+
+
+
+//  incrypt password
+
+
+// generate access token
+
+
+// genarate refresh token
+
+
 
 export const AdminSchema = mongoose.model("AdminSchema", adminSchema);

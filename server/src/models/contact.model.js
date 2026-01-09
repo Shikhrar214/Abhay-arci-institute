@@ -3,12 +3,12 @@ import mongoose,{Schema} from "mongoose";
 const contactSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Name is required"],
     max: 25,
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "Email is required"],
     lowercase: true,
     trim: true,
     unique: true,
@@ -18,10 +18,6 @@ const contactSchema = new Schema({
     type: String,
     max: 200,
   },
-  created_at: {
-    type: Date
-  },
-
 },{timestamps: true});
 
 export const ContactSchema = mongoose.model("ContactSchema", contactSchema)
