@@ -1,5 +1,6 @@
 import { app } from "./app.js";
 import dotenv from "dotenv";
+import { connectDatabase } from "./db/index.db.js";
 
 dotenv.config();
 
@@ -28,7 +29,9 @@ app.get("/", (req, res) => {
     console.log(error);
   }
 });
-
+connectDatabase()
+.then(
 app.listen(port, () => {
   console.log("listning on port  running...... ", port);
-});
+})
+)
