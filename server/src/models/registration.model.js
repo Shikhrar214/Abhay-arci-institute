@@ -75,12 +75,12 @@ const studentRegistrationSchema = new Schema({
     type: String,
     required: true,   
   },
-  emergency_contact_name:  {
+  emergencyContactName:  {
     type: String,
     max: 20,
   },
   
-  emergency_contact_number:  {
+  emergencyContactNumber:  {
     type: String,
     unique: true,
     required: true,
