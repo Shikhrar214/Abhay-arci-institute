@@ -15,7 +15,6 @@ const UniqueIdGenerator = (prevId) => {
 };
 
 
-const prevId = "ARCI210020399";
-console.log("UniqueIdGenerator:", UniqueIdGenerator(prevId));
+// console.log("UniqueIdGenerator:", UniqueIdGenerator());
 
 export { UniqueIdGenerator };

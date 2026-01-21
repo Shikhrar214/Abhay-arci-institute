@@ -1,10 +1,11 @@
 import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Course } from "./course.model.js";
+import { type } from "os";
 
 
-
-const studentRegistrationSchema = new Schema({
+const studentRegistrationSchema = new mongoose.Schema({
   
   id: {
     type: String,
@@ -82,7 +83,6 @@ const studentRegistrationSchema = new Schema({
   
   emergencyContactNumber:  {
     type: String,
-    unique: true,
     required: true,
     // Add regex validation if needed, e.g., for E.164 format
     match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid telephone number']
@@ -100,7 +100,6 @@ const studentRegistrationSchema = new Schema({
   
   parentPhone: {
     type: String,
-    unique: true,
     // required: true,
     // Add regex validation if needed, e.g., for E.164 format
     match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid telephone number']
@@ -110,14 +109,16 @@ const studentRegistrationSchema = new Schema({
     type: String,
     lowercase: true,
     trim: true,
-    unique: true,
     max: 50,
   },
 
   courses:  { 
-    type: String,
+    
     ref: [{type: Schema.Types.ObjectId, ref: "Course"}]
   }, 
+  refreshToken: {
+    type: String,
+  }
 },{timestamps: true});
 
 
@@ -125,7 +126,7 @@ const studentRegistrationSchema = new Schema({
 studentRegistrationSchema.pre("save", async function (next) {
   if(!this.isModified("password")) return next;
   this.password = await bcrypt.hash(this.password, 20);
-  next();
+  return next;
 })
 
 //  validate password
@@ -136,7 +137,7 @@ studentRegistrationSchema.methods.isPasswordCorrect = async function (password) 
 
 // generate access token
 studentRegistrationSchema.methods.generateAccessToken = async function (){
-  jwt.sign(
+  return jwt.sign(
     {
        _id: this._id,
     },
@@ -150,8 +151,8 @@ studentRegistrationSchema.methods.generateAccessToken = async function (){
 }
 
 // genarate refresh token
-studentRegistrationSchema.methods.generateAccessToken = async function (){
-  jwt.sign(
+studentRegistrationSchema.methods.generateRefreshToken = async function (){
+  return jwt.sign(
     {
        _id: this._id,
     },
