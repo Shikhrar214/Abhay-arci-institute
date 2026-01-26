@@ -5,7 +5,7 @@ import { v2 as cloudinary } from 'cloudinary';
 
 dotenv.config({path: "./.env"});
 
-const port = process.env.PORT;
+const port = process.env.PORT||3001;
 
 
 
