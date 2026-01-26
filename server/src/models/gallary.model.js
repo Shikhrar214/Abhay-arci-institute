@@ -26,4 +26,4 @@ const gallarySchema = new Schema({
   },
 }, {timestamps: true});
 
-export const GallarySchema = mongoose.model("GallarySchema", gallarySchema);
+export const Gallary = mongoose.model("Gallary", gallarySchema);

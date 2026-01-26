@@ -1,10 +1,19 @@
 import { app } from "./app.js";
 import dotenv from "dotenv";
 import { connectDatabase } from "./db/index.db.js";
+import { v2 as cloudinary } from 'cloudinary';
 
 dotenv.config({path: "./.env"});
 
 const port = process.env.PORT;
+
+
+
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECERET 
+});
 
 app.get("/", (req, res) => {
   try {

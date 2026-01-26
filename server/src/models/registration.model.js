@@ -1,8 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { Course } from "./course.model.js";
-import { type } from "os";
 
 
 const studentRegistrationSchema = new mongoose.Schema({
@@ -10,6 +8,7 @@ const studentRegistrationSchema = new mongoose.Schema({
   id: {
     type: String,
     required: [true, "ID is required"],
+    index: true
   },
 
   studentName: { 
@@ -42,6 +41,7 @@ const studentRegistrationSchema = new mongoose.Schema({
   govId:  {
     type: String,
     required: [true, "GovID is required"],
+    index: true,
     max: 50,
   },
   
@@ -70,7 +70,7 @@ const studentRegistrationSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
     unique: true,
-    max: 50,
+    match: [/^\S+@\S+\.\S+$/, "Invalid email"]
   },
   password: {
     type: String,
@@ -109,13 +109,18 @@ const studentRegistrationSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     trim: true,
-    max: 50,
+    match: [/^\S+@\S+\.\S+$/, "Invalid email"]
   },
 
-  courses:  { 
+  courses:  [ 
     
-    ref: [{type: Schema.Types.ObjectId, ref: "Course"}]
-  }, 
+     {
+      type: Schema.Types.ObjectId, 
+      ref: "Course"
+    }
+  ], 
+
+
   refreshToken: {
     type: String,
   }
@@ -123,10 +128,9 @@ const studentRegistrationSchema = new mongoose.Schema({
 
 
 //  incrypt password
-studentRegistrationSchema.pre("save", async function (next) {
-  if(!this.isModified("password")) return next;
-  this.password = await bcrypt.hash(this.password, 20);
-  return next;
+studentRegistrationSchema.pre("save", async function () {
+  if(!this.isModified("password")) return ;
+  this.password = await bcrypt.hash(this.password, 10);
 })
 
 //  validate password
@@ -169,4 +173,4 @@ studentRegistrationSchema.methods.generateRefreshToken = async function (){
 
 
 
-export const StudentRegistrationSchema = mongoose.model("StudentRegistrationSchema", studentRegistrationSchema);
+export const Student = mongoose.model("Student", studentRegistrationSchema);

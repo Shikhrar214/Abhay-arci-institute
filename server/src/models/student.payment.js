@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const studentPaymentSchema = new Schema({
   student_id: {
     type: Schema.Types.ObjectId,
-    ref: "StudentRegistrationSchema",
+    ref: "Student",
     required: [true, "Student ID is required"]
   },
 

@@ -6,38 +6,39 @@ const adminSchema = new Schema({
     adminName: {
         type: String,
         required: [true,"Admin name is required"],
-        min: 3,
-        max: 20,
+        minlength: 3,
+        maxlength: 20,
     },
     role: {
         type: String,
-        enum: {
-            values: ["Admin"],
-            message: "Role is required",
-        }
+        enum: ["Admin"],
+        default: "Admin",
     },
     email: {
         type: String,
-        required: [true, "Email is required"],
+        required: true,
+        unique: true,
         lowercase: true,
         trim: true,
-        unique: true,
-        max: 50,
+        match: [/^\S+@\S+\.\S+$/, "Invalid email"]
     },
-    userId: {
+
+    adminId: {
         type: String,
-        required: [true, "UserID is required"],
-        min: 5,
-        max: 15,
+        required: [true, "Admin Id is required"],
+        minlength: 5,
+        manlength: 15,
+        unique: true,
+        index: true
     },
     password: {
         type: String,
         required: [true, "Password is Required"],
-        min: [5, "Password must be strong"],
-        max: 30,
+        
     },
     refreshToken: {
         type: String,
+        select: false,
     },
 },{timestamps: true})
 
@@ -45,23 +46,25 @@ const adminSchema = new Schema({
 
 
 //  incrypt password
-adminSchema.pre("save", async function(next){
-    if(!this.password == this.isModified("password")) return next;
+adminSchema.pre("save", async function(){
 
-    this.password = await bcrypt.hash(this.password, 20);
-    next();
+    
+    if (!this.isModified("password")) return;
+
+    this.password = await bcrypt.hash(this.password, 12);
+    
 })
 
 // PASSWORD VALIDATION
-adminSchema.methods.isPasswoordCorrect = async function (){
-    return bcrypt.compare(password, this.password)
+adminSchema.methods.isPasswordCorrect = async function (password){
+    return await bcrypt.compare(password, this.password)
 }
 
 
 // generate access token
 
 adminSchema.methods.generateAccessToken = async function (){
-    jwt.sign(
+    return jwt.sign(
         {
             _id: this._id
         },
@@ -72,8 +75,8 @@ adminSchema.methods.generateAccessToken = async function (){
     )
 }
 // genarate refresh token
-adminSchema.method.generateRefreshToken = async function (){
-    jwt.sign(
+adminSchema.methods.generateRefreshToken = async function (){
+    return jwt.sign(
         {
             _id:  this._id
         },
@@ -85,4 +88,4 @@ adminSchema.method.generateRefreshToken = async function (){
 }
 
 
-export const AdminSchema = mongoose.model("AdminSchema", adminSchema);
+export const Admin = mongoose.model("Admin", adminSchema);

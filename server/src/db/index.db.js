@@ -4,7 +4,7 @@ import { DB_NAME } from "../constants.js";
 
 const connectDatabase = async () => {
     try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_CONNECTION_STRING}/${DB_NAME}`);
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_CONNECTION_STRING}/${DB_NAME}`,{maxPoolSize: 10});
         console.log("database connected sucessfully and name od db = ", connectionInstance.connection.name);
         
     } catch (error) {

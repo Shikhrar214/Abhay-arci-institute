@@ -2,7 +2,8 @@ import { asyncHandler } from "../utils/asyncHandler.utils.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { UniqueIdGenerator } from "../utils/IDGen.utils.js";
-import { StudentRegistrationSchema } from "../models/registration.model.js";
+import { Student } from "../models/registration.model.js";
+import { mediaUploader } from "../utils/cloudinary.utils.js"
 
 const studentRegistration = asyncHandler(async (req, res) => {
   // get details
@@ -56,7 +57,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
   }
 
   // check if student exist 
-  const existedStudent = await StudentRegistrationSchema.findOne({studentPhone, studentEmail});
+  const existedStudent = await Student.findOne({studentPhone, studentEmail});
   
   
   if(existedStudent) return await res.status(400).json( new ApiError(400,{}, "student already exist with this email and phone"));
@@ -66,12 +67,17 @@ const studentRegistration = asyncHandler(async (req, res) => {
   const studentImage = req.file; 
 
   // check image found or not
-  console.log("user image = ",studentImage?.filename);
-  if(!studentImage) return await res.status(400).json(new ApiError(400, studentImage?.filename, "user Image not found!"))
+  console.log("user image = ",studentImage?.path);
+  if(!studentImage) return await res.status(400).json(new ApiError(400, studentImage?.path, "user Image not found!"))
+    
+  // upload on cloudinary
+  const imageCloudinaryUpload = await mediaUploader(studentImage?.path) 
+  console.log("imageCloudinaryUpload", imageCloudinaryUpload.url);
+  
   
 
   //  get previous greatest id
- let prevGreatId = await StudentRegistrationSchema.aggregate([
+ let prevGreatId = await Student.aggregate([
       {
         $group: {
           _id: null,
@@ -92,7 +98,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
   
   
   // assemblle data
-  const studentData = new StudentRegistrationSchema({
+  const studentData = new Student({
     id: studentID,
     studentName,
     dob,
@@ -109,7 +115,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
     relationshipToStudent,
     parentPhone,
     parentEmail,
-    photo: studentImage?.filename,
+    photo: imageCloudinaryUpload?.url,
   })
 
  
@@ -133,7 +139,7 @@ const studentLogin = asyncHandler(async (req, res) => {
   const  { id,password } = req.body;
   if(!id && !password) {throw new ApiError(400, "id And password  is required")}
   // validate id
-  const foundedStudent = await StudentRegistrationSchema.findOne({id});
+  const foundedStudent = await Student.findOne({id});
   if(!foundedStudent) {throw new ApiError(400, "student not registerd")}
   // console.log("foundedStudent",foundedStudent);
   
@@ -186,18 +192,19 @@ const studentLogout = asyncHandler( async (req, res)=>{
    if(!studentId){throw new ApiError(400,"student not found")}
    console.log(studentId);
    
-        await StudentRegistrationSchema.findByIdAndUpdate(
+        const logoutStudentResponse = await Student.findByIdAndUpdate(
             studentId, 
             {
-                $set: {
-                    refreshToken: undefined
+                $unset: {
+                    refreshToken: 1
                 }
             },
             {
                 new: true
             }
         )
-
+        console.log("logoutStudentResponse",logoutStudentResponse);
+        
         
 
         return res

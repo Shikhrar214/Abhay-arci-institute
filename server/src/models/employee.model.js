@@ -9,6 +9,12 @@ const employeeSchema = new Schema({
     min: 3,
     max: 20,
   },
+   id: {
+        type: String,
+        required: true,
+        maxlength: 15,
+        unique: true   
+    },
   email: { 
     type: String,
     required: [true, "Email is required"],
@@ -38,23 +44,35 @@ const employeeSchema = new Schema({
     type: String,
     required: true
   },
+  state: {
+    type: String,
+    enum: ["BLOCK","TERMINATED","HIRED"],
+    timestamps: true,
+    reason: String,
+    fileURL: String,
+  },
+  refreshToken: {
+    type: String,
+    select: false
+  },
 },{timestamps: true});
 
-employeeSchema.pre("save", async function(next){
-  if(!this.password == this.isModified) return next;
-
-  this.password = bcrypt.hash(this.password, 20);
-  next();
+employeeSchema.pre("save", async function(){
+  if(!this.isModified("password")) return ;
+  
+  this.password = await bcrypt.hash(this.password, 10);
+  
 })
 
 
-employeeSchema.methods.isPasswordValid = async function (){
-  return bcrypt.compare(password, this.password);
+employeeSchema.methods.isPasswordValid = async function (password){
+
+  return await bcrypt.compare(password, this.password);
 }
 
 
 employeeSchema.methods.generateAccessToken = async function (){
-  jwt.sign(
+  return jwt.sign(
     {
       _id: this._id
     },
@@ -67,11 +85,11 @@ employeeSchema.methods.generateAccessToken = async function (){
 
 
 employeeSchema.methods.generateRefreshToken = async function(){
-  jwt.sign(
+  return jwt.sign(
     {
       _id: this._id
     },
-    peocess.env.JWT_REFRESH_TOKEN,
+    process.env.JWT_REFRESH_TOKEN,
     {
       expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRY
     }
@@ -80,7 +98,7 @@ employeeSchema.methods.generateRefreshToken = async function(){
 
 
 
-export const EmployeeSchema = mongoose.model("EmployeeSchema", employeeSchema);
+export const Employee = mongoose.model("Employee", employeeSchema);
 
 
 

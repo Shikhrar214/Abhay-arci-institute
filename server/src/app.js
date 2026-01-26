@@ -19,7 +19,13 @@ app.use("/api", studentRouter);
 
 
 // routes
+import { adminRouter } from './routes/admin.route.js';
+app.use("/api/v1",adminRouter);
 
 
 // routes
+import { employeeRouter } from './routes/employee.route.js';
+app.use("/api/v1/staff", employeeRouter)
+
+
 export  {app};

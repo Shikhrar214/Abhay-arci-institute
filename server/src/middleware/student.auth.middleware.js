@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import { StudentRegistrationSchema } from "../models/registration.model.js"
+import { Student } from "../models/registration.model.js"
 
 export const verifyJwtTokens = async (req, res, next) => {
     try {
@@ -10,7 +10,7 @@ export const verifyJwtTokens = async (req, res, next) => {
         const decoadToken = await jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
         if(!decoadToken) {return res.status(500).json("unverified student")}
         
-        const student = await StudentRegistrationSchema.findById({_id: decoadToken?._id}).select("-password -refreshToken");
+        const student = await Student.findById({_id: decoadToken?._id}).select("-password -refreshToken");
 
         if(!student) {return res.status(400).json("student is not verified for login")};
 
