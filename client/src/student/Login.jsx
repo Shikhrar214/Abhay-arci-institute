@@ -1,11 +1,39 @@
-import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router"
+import toast, {Toaster} from "react-hot-toast";
+import axios from  "axios"
+
 
 const Login = () => {
 
-  const studentLogin = () => {
-    alert("papa")
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    id: "",
+    password: "",
+  });
+
+  const handleCahnge = (e) => {
+    const {name, value} = e.target;
+    setLoginData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+   
+    
   }
+  const studentLogin = async (e) => {
+    e.preventDefault();
+     console.log(loginData);
+    try {
+      const response = await axios.post("/api/student-login", loginData)
+      toast.success("login successfull");
+      navigate("/student")
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-6">
@@ -24,8 +52,12 @@ const Login = () => {
         <form className="space-y-6">
           {/* Unique ID */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Unique ID</label>
+            <label className="block text-sm mb-2 text-gray-300">
+              Unique ID
+            </label>
             <input
+              onChange={handleCahnge}
+              name="id"
               type="text"
               placeholder="Enter your ID"
               className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none placeholder-gray-400 text-white transition duration-300"
@@ -36,6 +68,8 @@ const Login = () => {
           <div>
             <label className="block text-sm mb-2 text-gray-300">Password</label>
             <input
+              onChange={handleCahnge}
+              name="password"
               type="password"
               placeholder="Enter your password"
               className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none placeholder-gray-400 text-white transition duration-300"
@@ -65,7 +99,7 @@ const Login = () => {
 
         {/* Divider */}
         <div className="my-6 border-t border-gray-700"></div>
-      
+
         {/* Signup Link */}
         <p className="text-center text-gray-400 text-sm">
           Don’t have an account?{" "}

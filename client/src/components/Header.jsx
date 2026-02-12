@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AuthToggle } from "./index.js";
 import { NavLink } from "react-router";
 import { Menu, X } from "lucide-react"; 
 import { logo } from "../assets/images";
@@ -18,7 +19,7 @@ function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-8 items-center">
           {navigation.map((item, index) => (
             <NavLink
               key={index}
@@ -34,6 +35,7 @@ function Header() {
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </NavLink>
           ))}
+          <authToggle/>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -67,6 +69,7 @@ function Header() {
               </NavLink>
             </li>
           ))}
+          <authToggle isMobile={true} closeMenu={() => setIsOpen(false)} />
         </ul>
       </div>
     </header>
