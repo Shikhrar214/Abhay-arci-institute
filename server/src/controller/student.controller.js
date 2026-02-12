@@ -24,7 +24,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
     parentPhone,
     parentEmail,
   } = req.body;
-
+  console.log(req.body)
   // validate all feilds
   const fields = {
     studentName,
@@ -55,7 +55,8 @@ const studentRegistration = asyncHandler(async (req, res) => {
         .json(new ApiError(400, null,  `${key} is required`));
     }
   }
-
+ console.log("i am here");
+ 
   // check if student exist 
   const existedStudent = await Student.findOne({studentPhone, studentEmail});
   
@@ -65,7 +66,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
   // take media
 
   const studentImage = req.file; 
-
+  if(!studentImage) { throw new ApiError(404, "image not found")}
   // check image found or not
   console.log("user image = ",studentImage?.path);
   if(!studentImage) return await res.status(400).json(new ApiError(400, studentImage?.path, "user Image not found!"))
@@ -118,6 +119,7 @@ const studentRegistration = asyncHandler(async (req, res) => {
     photo: imageCloudinaryUpload?.url,
   })
 
+ console.log("studentData", studentData);
  
   
   // upload data on database
@@ -136,11 +138,11 @@ console.log("student registered sucessfully!");
 
 const studentLogin = asyncHandler(async (req, res) => {
   // get id and password 
-  const  { id,password } = req.body;
-  if(!id && !password) {throw new ApiError(400, "id And password  is required")}
+  const  { id, password } = req.body;
+  if (!id || !password) { throw new ApiError(400, null, "ID and password are required") }
   // validate id
-  const foundedStudent = await Student.findOne({id});
-  if(!foundedStudent) {throw new ApiError(400, "student not registerd")}
+  const foundedStudent = await Student.findOne({ id });
+  if (!foundedStudent) { throw new ApiError(400, null, "Student not registered") }
   // console.log("foundedStudent",foundedStudent);
   
   // check pass
@@ -171,7 +173,7 @@ const studentLogin = asyncHandler(async (req, res) => {
   res
   .cookie("accessToken", accessToken, options)
   .cookie("refreshToken", refreshToken, options)
-  .json(new ApiResponse(200, "login successfull"))
+  .json(new ApiResponse(200, { accessToken, refreshToken }, "login successful"))
 });
 
 const getStudentDetails = asyncHandler(async (req, res) => {
@@ -205,12 +207,15 @@ const studentLogout = asyncHandler( async (req, res)=>{
         )
         console.log("logoutStudentResponse",logoutStudentResponse);
         
-        
+        const options = {
+            httpOnly: true,
+            secure: true,
+        } 
 
         return res
         .status(200)
-        .clearCookie("accessToken")
-        .clearCookie("refreshToken")
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
         .json({
             success: true,
             message: "user loggedout successfully"

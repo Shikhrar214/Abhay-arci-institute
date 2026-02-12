@@ -5,7 +5,7 @@ export const verifyJwtTokens = async (req, res, next) => {
     try {
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
         if (!token) { return res.status(400).json(" log in first ")};
-        console.log(token);
+        console.log("token = ", token);
 
         const decoadToken = await jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
         if(!decoadToken) {return res.status(500).json("unverified student")}

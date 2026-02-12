@@ -60,8 +60,8 @@ const studentRegistrationSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    // Add regex validation if needed, e.g., for E.164 format
-    match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid telephone number']
+    // Add regex validation if needed, e.g., for phone number
+    match: [/^[0-9+\-()\\s]{7,15}$/, 'Please fill a valid telephone number']
   },
   
   studentEmail:  {
@@ -84,8 +84,8 @@ const studentRegistrationSchema = new mongoose.Schema({
   emergencyContactNumber:  {
     type: String,
     required: true,
-    // Add regex validation if needed, e.g., for E.164 format
-    match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid telephone number']
+    // Add regex validation if needed, e.g., for phone number
+    match: [/^[0-9+\-()\\s]{7,15}$/, 'Please fill a valid telephone number']
   },
 
   parentName: { 
@@ -101,8 +101,8 @@ const studentRegistrationSchema = new mongoose.Schema({
   parentPhone: {
     type: String,
     // required: true,
-    // Add regex validation if needed, e.g., for E.164 format
-    match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid telephone number']
+    // Add regex validation if needed, e.g., for phone number
+    match: [/^[0-9+\-()\\s]{7,15}$/, 'Please fill a valid telephone number']
   },
   
   parentEmail:  { 
