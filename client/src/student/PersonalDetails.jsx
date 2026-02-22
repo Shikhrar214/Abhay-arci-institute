@@ -50,7 +50,7 @@ const PersonalDetails = () => {
       toast.success("Registration successful!");
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error.response.data);
+      console.error("Error:", error);
       toast.error(error.response?.data?.message || "Registration failed");
     }
   };
@@ -175,7 +175,6 @@ const PersonalDetails = () => {
               <input
                 type="file"
                 name="photo"
-                placeholder="choose passport size photo"
                 accept="image/*"
                 onChange={handleFileChange}
                 className="w-full p-3 rounded-lg bg-gray-900 border border-gray-600 focus:border-orange-400 outline-none"
