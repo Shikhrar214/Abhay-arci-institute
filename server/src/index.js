@@ -10,27 +10,14 @@ const port = process.env.PORT||3001;
 
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    // origin: process.env.CORS_ORIGIN,
+    origin: [
+    "http://localhost:5173",
+    process.env.CORS_ORIGIN,
+  ],
     credentials: true,
-    methods: ["GET","POST"],
+    // methods: ["GET","POST"],
 }))
-
-
-// const allowedOrigins = [
-//   process.env.CORS_ORIGIN,
-//   "http://localhost:5173"
-// ];
-
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("CORS not allowed"));
-//     }
-//   },
-//   credentials: true
-// }));
 
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
